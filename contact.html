@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - Team Synchronica</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+        margin: 0;
+      }
+
+      body {
+        min-height: 100vh;
+        background: #000;
+        color: #fff;
+        font-family: Arial, sans-serif;
+      }
+
+      main {
+        width: min(760px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 48px 0;
+      }
+
+      h1 {
+        margin: 0 0 28px;
+        font-size: clamp(2.5rem, 8vw, 4rem);
+      }
+
+      form {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      label {
+        display: grid;
+        gap: 8px;
+        font-size: 1rem;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #666;
+        border-radius: 5px;
+        background: #111;
+        color: #fff;
+        font: inherit;
+      }
+
+      textarea {
+        min-height: 150px;
+        resize: vertical;
+      }
+
+      .full-width {
+        grid-column: 1 / -1;
+      }
+
+      button {
+        justify-self: start;
+        padding: 12px 22px;
+        border: 1px solid #fff;
+        border-radius: 5px;
+        background: #fff;
+        color: #000;
+        font: inherit;
+        cursor: pointer;
+      }
+
+      button:hover,
+      button:focus-visible {
+        background: #ddd;
+      }
+
+      .back {
+        display: inline-block;
+        margin-top: 28px;
+        color: #fff;
+      }
+
+      @media (max-width: 560px) {
+        form {
+          grid-template-columns: 1fr;
+        }
+
+        .full-width {
+          grid-column: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Contact</h1>
+      <form id="contact-form">
+        <label for="salutation">
+          Anrede
+          <select id="salutation" name="Anrede">
+            <option value="">Bitte auswählen</option>
+            <option>Frau</option>
+            <option>Herr</option>
+            <option>Divers</option>
+            <option>Keine Angabe</option>
+          </select>
+        </label>
+        <label for="company">
+          Firma
+          <input id="company" name="Firma" autocomplete="organization" />
+        </label>
+        <label for="first-name">
+          Name
+          <input id="first-name" name="Name" autocomplete="given-name" required />
+        </label>
+        <label for="last-name">
+          Nachname
+          <input id="last-name" name="Nachname" autocomplete="family-name" required />
+        </label>
+        <label for="email">
+          E-Mail
+          <input id="email" name="E-Mail" type="email" autocomplete="email" required />
+        </label>
+        <label for="phone">
+          Telefon
+          <input id="phone" name="Telefon" type="tel" autocomplete="tel" />
+        </label>
+        <label class="full-width" for="message">
+          Nachrichtentext
+          <textarea id="message" name="Nachricht" required></textarea>
+        </label>
+        <button class="full-width" type="submit">Absenden</button>
+      </form>
+      <a class="back" href="index.html">Zurück zur Startseite</a>
+    </main>
+    <script>
+      document.getElementById("contact-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        var fields = new FormData(event.currentTarget);
+        var message = Array.from(fields.entries())
+          .map(function (field) {
+            return field[0] + ": " + field[1];
+          })
+          .join("\n");
+        var subject = encodeURIComponent("Kontaktanfrage über die Website");
+        var body = encodeURIComponent(message);
+
+        window.location.href =
+          "mailto:synchronica.show@gmail.com?subject=" + subject + "&body=" + body;
+      });
+    </script>
+  </body>
+</html>
