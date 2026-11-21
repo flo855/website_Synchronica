@@ -45,6 +45,10 @@
         font-size: 1rem;
       }
 
+      .required-mark {
+        color: #ff7b7b;
+      }
+
       input,
       select,
       textarea {
@@ -102,6 +106,7 @@
   <body>
     <main>
       <h1>Contact</h1>
+      <p>Mit <span class="required-mark" aria-hidden="true">*</span> markierte Felder sind Pflichtfelder.</p>
       <form id="contact-form">
         <label for="salutation">
           Anrede
@@ -113,20 +118,20 @@
             <option>Keine Angabe</option>
           </select>
         </label>
+        <label for="first-name">
+          Name <span class="required-mark" aria-hidden="true">*</span>
+          <input id="first-name" name="Name" autocomplete="given-name" required />
+        </label>
+        <label for="last-name">
+          Nachname <span class="required-mark" aria-hidden="true">*</span>
+          <input id="last-name" name="Nachname" autocomplete="family-name" required />
+        </label>
         <label for="company">
           Firma
           <input id="company" name="Firma" autocomplete="organization" />
         </label>
-        <label for="first-name">
-          Name
-          <input id="first-name" name="Name" autocomplete="given-name" required />
-        </label>
-        <label for="last-name">
-          Nachname
-          <input id="last-name" name="Nachname" autocomplete="family-name" required />
-        </label>
         <label for="email">
-          E-Mail
+          E-Mail <span class="required-mark" aria-hidden="true">*</span>
           <input id="email" name="E-Mail" type="email" autocomplete="email" required />
         </label>
         <label for="phone">
@@ -134,7 +139,7 @@
           <input id="phone" name="Telefon" type="tel" autocomplete="tel" />
         </label>
         <label class="full-width" for="message">
-          Nachrichtentext
+          Nachrichtentext <span class="required-mark" aria-hidden="true">*</span>
           <textarea id="message" name="Nachricht" required></textarea>
         </label>
         <button class="full-width" type="submit">Absenden</button>
