@@ -87,9 +87,20 @@
       }
 
       .back {
-        display: inline-block;
-        margin-top: 28px;
+        position: fixed;
+        top: 24px;
+        left: 24px;
+        padding: 10px 14px;
+        border: 1px solid #fff;
+        border-radius: 6px;
         color: #fff;
+        text-decoration: none;
+      }
+
+      .back:hover,
+      .back:focus-visible {
+        background: #fff;
+        color: #000;
       }
 
       @media (max-width: 560px) {
