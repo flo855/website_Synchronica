@@ -20,6 +20,67 @@
         color: #fff;
       }
 
+      .menu {
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        z-index: 10;
+      }
+
+      .menu summary {
+        width: 44px;
+        height: 44px;
+        display: grid;
+        place-content: center;
+        gap: 6px;
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .menu summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .menu summary::before {
+        content: "";
+      }
+
+      .menu summary span,
+      .menu summary::before,
+      .menu summary::after {
+        content: "";
+        width: 30px;
+        height: 3px;
+        display: block;
+        background: #fff;
+        border-radius: 2px;
+      }
+
+      .menu nav {
+        position: absolute;
+        top: 52px;
+        right: 0;
+        min-width: 180px;
+        padding: 8px;
+        background: #111;
+        border: 1px solid #333;
+        border-radius: 8px;
+      }
+
+      .menu a {
+        display: block;
+        padding: 12px 14px;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+
+      .menu a:hover,
+      .menu a:focus-visible {
+        background: #333;
+      }
+
       h1 {
         margin: 0;
         color: #fff;
@@ -32,6 +93,16 @@
     </style>
   </head>
   <body>
+    <details class="menu">
+      <summary aria-label="Menü öffnen">
+        <span></span>
+      </summary>
+      <nav aria-label="Hauptmenü">
+        <a href="team.html">Team</a>
+        <a href="shows.html">Shows</a>
+        <a href="media.html">Media</a>
+      </nav>
+    </details>
     <h1>team synchronica</h1>
   </body>
 </html>
