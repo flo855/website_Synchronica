@@ -5,29 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Media - Team Synchronica</title>
     <style>
+      * {
+        box-sizing: border-box;
+      }
+
       html,
       body {
-        width: 100%;
         min-height: 100%;
         margin: 0;
       }
 
       body {
         min-height: 100vh;
-        display: grid;
-        place-items: center;
         background: #000;
         color: #fff;
         font-family: Arial, sans-serif;
       }
 
-      main {
+      .menu {
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        z-index: 10;
+      }
+
+      .menu summary {
+        width: 44px;
+        height: 44px;
+        display: grid;
+        place-content: center;
+        gap: 6px;
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .menu summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .menu summary::before,
+      .menu summary span,
+      .menu summary::after {
+        content: "";
+        width: 30px;
+        height: 3px;
+        display: block;
+        background: #fff;
+        border-radius: 2px;
+      }
+
+      .menu nav {
+        position: absolute;
+        top: 52px;
+        right: 0;
+        min-width: 180px;
+        padding: 8px;
+        background: #111;
+        border: 1px solid #333;
+        border-radius: 8px;
+      }
+
+      .menu a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 5px;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .menu-icon {
+        width: 22px;
+        flex: 0 0 22px;
         text-align: center;
       }
 
+      .menu a:hover,
+      .menu a:focus-visible {
+        background: #333;
+      }
+
+      main {
+        width: min(1200px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 88px 0 48px;
+      }
+
       h1 {
-        margin: 0 0 24px;
-        font-size: clamp(3rem, 10vw, 7rem);
+        margin: 0 0 32px;
+        font-size: clamp(2.5rem, 8vw, 5rem);
+        text-align: center;
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .placeholder {
+        display: grid;
+        aspect-ratio: 1;
+        place-items: center;
+        border: 1px dashed #555;
+        border-radius: 10px;
+        background: #101010;
+        color: #888;
+        font-size: 1rem;
       }
 
       .back {
@@ -46,12 +131,51 @@
         background: #fff;
         color: #000;
       }
+
+      @media (max-width: 900px) {
+        .gallery {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 600px) {
+        .gallery {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 12px;
+        }
+      }
     </style>
   </head>
   <body>
+    <details class="menu">
+      <summary aria-label="Menü öffnen">
+        <span></span>
+      </summary>
+      <nav aria-label="Hauptmenü">
+        <a href="index.html"><span class="menu-icon" aria-hidden="true">🏠</span>Startseite</a>
+        <a href="team.html"><span class="menu-icon" aria-hidden="true">👥</span>Team</a>
+        <a href="shows.html"><span class="menu-icon" aria-hidden="true">🎭</span>Shows</a>
+        <a href="media.html"><span class="menu-icon" aria-hidden="true">🖼️</span>Media</a>
+        <a href="contact.html"><span class="menu-icon" aria-hidden="true">✉️</span>Contact</a>
+      </nav>
+    </details>
+    <a class="back" href="index.html">Zurück zur Startseite</a>
     <main>
       <h1>Media</h1>
-      <a class="back" href="index.html">Zurück zur Startseite</a>
+      <div class="gallery" aria-label="Platzhalter für zukünftige Bilder">
+        <div class="placeholder">Bild folgt</div>
+        <div class="placeholder">Bild folgt</div>
+        <div class="placeholder">Bild folgt</div>
+        <div class="placeholder">Bild folgt</div>
+        <div class="placeholder">Bild folgt</div>
+        <div class="placeholder">Bild folgt</div>
+        <div class="placeholder">Bild folgt</div>
+        <div class="placeholder">Bild folgt</div>
+        <div class="placeholder">Bild folgt</div>
+        <div class="placeholder">Bild folgt</div>
+        <div class="placeholder">Bild folgt</div>
+        <div class="placeholder">Bild folgt</div>
+      </div>
     </main>
   </body>
 </html>

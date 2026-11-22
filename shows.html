@@ -19,6 +19,70 @@
         font-family: Arial, sans-serif;
       }
 
+      .menu {
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        z-index: 10;
+      }
+
+      .menu summary {
+        width: 44px;
+        height: 44px;
+        display: grid;
+        place-content: center;
+        gap: 6px;
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .menu summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .menu summary::before,
+      .menu summary span,
+      .menu summary::after {
+        content: "";
+        width: 30px;
+        height: 3px;
+        display: block;
+        background: #fff;
+        border-radius: 2px;
+      }
+
+      .menu nav {
+        position: absolute;
+        top: 52px;
+        right: 0;
+        min-width: 180px;
+        padding: 8px;
+        background: #111;
+        border: 1px solid #333;
+        border-radius: 8px;
+      }
+
+      .menu a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 5px;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .menu-icon {
+        width: 22px;
+        flex: 0 0 22px;
+        text-align: center;
+      }
+
+      .menu a:hover,
+      .menu a:focus-visible {
+        background: #333;
+      }
+
       main {
         width: min(1100px, calc(100% - 40px));
         margin: 0 auto;
@@ -124,6 +188,18 @@
     </style>
   </head>
   <body>
+    <details class="menu">
+      <summary aria-label="Menü öffnen">
+        <span></span>
+      </summary>
+      <nav aria-label="Hauptmenü">
+        <a href="index.html"><span class="menu-icon" aria-hidden="true">🏠</span>Startseite</a>
+        <a href="team.html"><span class="menu-icon" aria-hidden="true">👥</span>Team</a>
+        <a href="shows.html"><span class="menu-icon" aria-hidden="true">🎭</span>Shows</a>
+        <a href="media.html"><span class="menu-icon" aria-hidden="true">🖼️</span>Media</a>
+        <a href="contact.html"><span class="menu-icon" aria-hidden="true">✉️</span>Contact</a>
+      </nav>
+    </details>
     <main>
       <a class="back" href="index.html">Zurück zur Startseite</a>
       <h1>Squared Lights</h1>
