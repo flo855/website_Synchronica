@@ -168,6 +168,26 @@
         line-height: 1.7;
       }
 
+      .recommendation-link {
+        display: block;
+        width: fit-content;
+        max-width: 100%;
+        margin: 44px auto 0;
+        padding: 14px 20px;
+        border: 1px solid #fff;
+        border-radius: 6px;
+        color: #fff;
+        font-weight: 700;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      .recommendation-link:hover,
+      .recommendation-link:focus-visible {
+        background: #fff;
+        color: #000;
+      }
+
       @media (max-width: 760px) {
         main {
           padding-top: 32px;
@@ -209,6 +229,7 @@
           </ul>
         </aside>
       </div>
+      <a class="recommendation-link" href="show-recommender.html">Welche Show passt zu meinem Event?</a>
     </main>
     <script>
       document.getElementById("play-button").addEventListener("click", function () {

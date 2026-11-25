@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welche Show passt zu meinem Event? - Team Synchronica</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+      }
+
+      body {
+        min-height: 100vh;
+        background: #000;
+        color: #fff;
+        font-family: Arial, sans-serif;
+      }
+
+      .menu {
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        z-index: 10;
+      }
+
+      .menu summary {
+        width: 44px;
+        height: 44px;
+        display: grid;
+        place-content: center;
+        gap: 6px;
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .menu summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .menu summary::before,
+      .menu summary span,
+      .menu summary::after {
+        content: "";
+        width: 30px;
+        height: 3px;
+        display: block;
+        background: #fff;
+        border-radius: 2px;
+      }
+
+      .menu nav {
+        position: absolute;
+        top: 52px;
+        right: 0;
+        min-width: 180px;
+        padding: 8px;
+        background: #111;
+        border: 1px solid #333;
+        border-radius: 8px;
+      }
+
+      .menu a {
+        display: block;
+        padding: 12px 14px;
+        border-radius: 5px;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .menu a:hover,
+      .menu a:focus-visible {
+        background: #333;
+      }
+
+      main {
+        width: min(760px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 60px 0;
+      }
+
+      .back {
+        position: fixed;
+        top: 24px;
+        left: 24px;
+        z-index: 1;
+        padding: 10px 14px;
+        border: 1px solid #fff;
+        border-radius: 6px;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .back:hover,
+      .back:focus-visible {
+        background: #fff;
+        color: #000;
+      }
+
+      h1 {
+        margin: 0 0 32px;
+        font-size: clamp(2.2rem, 7vw, 4rem);
+      }
+
+      form {
+        display: grid;
+        gap: 20px;
+      }
+
+      .measurements {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      label {
+        display: grid;
+        gap: 8px;
+        font-weight: 700;
+      }
+
+      .text-input,
+      .unit-input {
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid #777;
+        border-radius: 6px;
+        background: #111;
+        color: #fff;
+        font: inherit;
+      }
+
+      .text-input {
+        padding: 12px;
+      }
+
+      .text-input:focus,
+      .unit-input:focus-within {
+        outline: 2px solid #fff;
+        outline-offset: 2px;
+      }
+
+      .unit-input {
+        display: flex;
+        align-items: center;
+      }
+
+      .unit-input .text-input {
+        min-width: 0;
+        border: 0;
+        outline: 0;
+        background: transparent;
+      }
+
+      .unit-input span {
+        padding: 0 12px;
+      }
+
+      .options {
+        display: grid;
+        gap: 14px;
+        margin: 4px 0;
+      }
+
+      .options-hint {
+        margin: 0;
+        color: #ccc;
+        font-size: 0.95rem;
+      }
+
+      .checkbox-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        accent-color: #fff;
+      }
+
+      button {
+        justify-self: start;
+        padding: 13px 22px;
+        border: 1px solid #fff;
+        border-radius: 6px;
+        background: #fff;
+        color: #000;
+        cursor: pointer;
+        font: inherit;
+        font-weight: 700;
+      }
+
+      button:hover,
+      button:focus-visible {
+        background: #000;
+        color: #fff;
+      }
+
+      #result {
+        margin-top: 28px;
+        padding: 20px;
+        border: 1px solid #555;
+        border-radius: 8px;
+      }
+
+      #result h2 {
+        margin: 0 0 10px;
+      }
+
+      #result p {
+        margin: 8px 0 0;
+        line-height: 1.5;
+      }
+
+      @media (max-width: 560px) {
+        main {
+          padding-top: 92px;
+        }
+
+        .measurements {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <details class="menu">
+      <summary aria-label="Menü öffnen">
+        <span></span>
+      </summary>
+      <nav aria-label="Hauptmenü">
+        <a href="index.html">Startseite</a>
+        <a href="team.html">Team</a>
+        <a href="shows.html">Shows</a>
+        <a href="media.html">Media</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </details>
+    <main>
+      <a class="back" href="shows.html">Zurück zu den Shows</a>
+      <h1>Welche Show passt zu meinem Event?</h1>
+      <form id="show-form">
+        <div class="measurements">
+          <label for="stage-width">Bühnenbreite
+            <span class="unit-input">
+              <input class="text-input" id="stage-width" name="stage-width" type="text" inputmode="decimal" pattern="[0-9]+([.,][0-9]+)?|[.,][0-9]+" title="Bitte eine Zahl mit Punkt oder Komma eingeben." required />
+              <span aria-hidden="true">m</span>
+            </span>
+          </label>
+          <label for="stage-height">Bühnenhöhe
+            <span class="unit-input">
+              <input class="text-input" id="stage-height" name="stage-height" type="text" inputmode="decimal" pattern="[0-9]+([.,][0-9]+)?|[.,][0-9]+" title="Bitte eine Zahl mit Punkt oder Komma eingeben." required />
+              <span aria-hidden="true">m</span>
+            </span>
+          </label>
+          <label for="stage-depth">Bühnentiefe
+            <span class="unit-input">
+              <input class="text-input" id="stage-depth" name="stage-depth" type="text" inputmode="decimal" pattern="[0-9]+([.,][0-9]+)?|[.,][0-9]+" title="Bitte eine Zahl mit Punkt oder Komma eingeben." required />
+              <span aria-hidden="true">m</span>
+            </span>
+          </label>
+          <label for="show-length">Showlänge in min
+            <input class="text-input" id="show-length" name="show-length" type="text" inputmode="decimal" pattern="[0-9]+([.,][0-9]+)?|[.,][0-9]+" title="Bitte eine Zahl mit Punkt oder Komma eingeben." required />
+          </label>
+        </div>
+        <div class="options">
+          <label class="checkbox-label" for="logo-integration">
+            <input id="logo-integration" name="logo-integration" type="checkbox" />
+            Logointegration
+          </label>
+          <label class="checkbox-label" for="custom-colours">
+            <input id="custom-colours" name="custom-colours" type="checkbox" />
+            Custom colours
+          </label>
+          <p class="options-hint">Ankreuzen für Ja, nicht angekreuzt bedeutet Nein.</p>
+        </div>
+        <button type="submit">Calculate</button>
+      </form>
+      <section id="result" aria-live="polite" hidden>
+        <h2>Unsere Empfehlung</h2>
+        <p id="recommendation"></p>
+      </section>
+    </main>
+    <script>
+      document.getElementById("show-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        var stageWidth = Number(document.getElementById("stage-width").value.trim().replace(",", "."));
+        var stageHeight = Number(document.getElementById("stage-height").value.trim().replace(",", "."));
+        var recommendation;
+
+        if (stageHeight < 3.5) {
+          recommendation = "Bühne eventuell zu niedrig, show auf anfrage";
+        } else {
+          recommendation = stageWidth < 9 ? "Squared Lights small stage version" : "Squared Lights";
+          var options = [];
+
+          if (document.getElementById("custom-colours").checked) {
+            options.push("custom colours");
+          }
+          if (document.getElementById("logo-integration").checked) {
+            options.push("logointegration");
+          }
+          if (options.length > 0) {
+            recommendation += " mit " + options.join(" und ");
+          }
+        }
+
+        document.getElementById("recommendation").textContent = recommendation;
+        document.getElementById("result").hidden = false;
+      });
+    </script>
+  </body>
+</html>
